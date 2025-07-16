@@ -8,7 +8,7 @@ require_once WOOGOBO_PLUGIN_DIR . 'includes/admin-settings.php';
 add_action('plugins_loaded', 'woobogo_init_plugin');
 
 function woobogo_init_plugin() {
-	if (!function_exists('WC')) return;
+	if ( !class_exists('WooCommerce') ) { return; }
 
 	$plugin_ativo = get_option('woobogo_enabled', false);
 	if (!$plugin_ativo) return;
