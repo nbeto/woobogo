@@ -26,8 +26,16 @@ function woobogo_verificar_dependencias() {
 	}
 }
 
-if (!function_exists('is_plugin_active')) {
+if ( !defined('WOOGOBO_PLUGIN_DIR') ) {
+	return;
+}
+
+if ( !function_exists('is_plugin_active') ) {
 	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+if ( !is_plugin_active('woocommerce/woocommerce.php') ) {
+	return;
 }
 
 define('WOOGOBO_PLUGIN_DIR', plugin_dir_path(__FILE__));
