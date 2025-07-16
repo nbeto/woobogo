@@ -1,8 +1,6 @@
 # WooBOGO – Multibuy Discounts for WooCommerce
 
 Offer powerful "Buy X, Pay Y" promotions like:
-- Buy 2 Get 1 Free
-- Buy 3 for the price of 2
 - Buy 1 Get 1 Free
 
 This plugin adds dynamic cart discounts based on quantity, always targeting the cheapest products for maximum flexibility.
