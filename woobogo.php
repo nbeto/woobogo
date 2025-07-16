@@ -13,6 +13,24 @@
 
 defined('ABSPATH') || exit;
 
+register_activation_hook(__FILE__, 'woobogo_verificar_dependencias');
+
+function woobogo_verificar_dependencias() {
+	if (!is_plugin_active('woocommerce/woocommerce.php')) {
+		deactivate_plugins(plugin_basename(__FILE__));
+		wp_die(
+			'O plugin <strong>WooBOGO</strong> requer o WooCommerce ativo. Por favor ativa o WooCommerce primeiro.',
+			'Erro de dependência',
+			['back_link' => true]
+		);
+	}
+}
+
+if (!function_exists('is_plugin_active')) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
 define('WOOGOBO_PLUGIN_DIR', plugin_dir_path(__FILE__));
+define('WOOGOBO_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 require_once WOOGOBO_PLUGIN_DIR . 'includes/core.php';
