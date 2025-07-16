@@ -13,8 +13,8 @@
 
 if (!defined('ABSPATH')) exit;
 
-add_action('woocommerce_before_calculate_totals', 'bewide_marcar_produtos_gratis_visual');
-function bewide_marcar_produtos_gratis_visual($cart) {
+add_action('woocommerce_before_calculate_totals', 'woobogo_marcar_produtos_gratis_visual');
+function woobogo_marcar_produtos_gratis_visual($cart) {
 	if (is_admin() && !defined('DOING_AJAX')) return;
 
 	// 1. Limpa os marcadores anteriores para evitar lixo
@@ -70,8 +70,8 @@ function bewide_marcar_produtos_gratis_visual($cart) {
 	}
 }
 
-add_filter('woocommerce_cart_item_subtotal', 'bewide_mostrar_subtotal_com_desconto_visual', 10, 3);
-function bewide_mostrar_subtotal_com_desconto_visual($subtotal_html, $cart_item, $cart_item_key) {
+add_filter('woocommerce_cart_item_subtotal', 'woobogo_mostrar_subtotal_com_desconto_visual', 10, 3);
+function woobogo_mostrar_subtotal_com_desconto_visual($subtotal_html, $cart_item, $cart_item_key) {
 	if (
 		isset($cart_item['bewide_preco_original']) &&
 		isset($cart_item['bewide_quantidade_gratis']) &&
@@ -93,8 +93,8 @@ function bewide_mostrar_subtotal_com_desconto_visual($subtotal_html, $cart_item,
 	return $subtotal_html;
 }
 
-add_filter('woocommerce_cart_totals_order_total_html', 'bewide_mostrar_total_final_com_desconto');
-function bewide_mostrar_total_final_com_desconto($total_html) {
+add_filter('woocommerce_cart_totals_order_total_html', 'woobogo_mostrar_total_final_com_desconto');
+function woobogo_mostrar_total_final_com_desconto($total_html) {
 	$cart = WC()->cart;
 	$desconto_total = 0;
 
